@@ -16,7 +16,9 @@ var config = {
     // npm-linked packages can locate missing dependencies in app's node_modules
     fallback: nodeRoot,
     alias: {
-      'angular-material.css': nodeRoot + '/angular-material/angular-material.css'
+      'angular-material.css': nodeRoot + '/angular-material/angular-material.css',
+      'angular-material-icons.css': nodeRoot + '/angular-material-icons/angular-material-icons.css',
+      'svg-morpheus': nodeRoot + '/svg-morpheus/compile/unminified/svg-morpheus.js'
     },
     extensions: ['', '.js', '.json', 'html', 'scss', 'css']
   },

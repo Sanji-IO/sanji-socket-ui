@@ -11,6 +11,10 @@ config.entry = {
   'sanji-ui': './component/index.js'
 };
 config.output.filename = 'sanji-socket-ui.js';
+config.output.library = 'sjSocket';
+config.externals = {
+  'sanji-socket-ui': 'sjSocket'
+};
 
 config.module.loaders = [
   {
@@ -22,11 +26,6 @@ config.module.loaders = [
 config.plugins.push(
   new ExtractTextPlugin('sanji-socket-ui.css'),
   new WebpackNotifierPlugin({title: 'Webpack'}),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }),
   new webpack.optimize.DedupePlugin()
 );
 module.exports = config;
