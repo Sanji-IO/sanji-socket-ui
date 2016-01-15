@@ -1,5 +1,6 @@
 {
   "name": "sanji-socket-ui",
+  "author": "Zack Yang <zack9433@gmail.com> (https://github.com/zack9433)",
   "description": "sanji-exception-ui UI",
   "main": "index",
   "config": {
@@ -18,18 +19,17 @@
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "start": "NODE_ENV=development node server/dev-server.js",
     "test": "mocha -w -R spec --compilers js:babel/register ./app/component/*.spec.js",
-    "test:once": "istanbul cover -x *.spec.js _mocha -- -R spec --compilers js:babel/register ./app/component/*.spec.js",
+    "test:once": "istanbul cover -x *.spec.js _mocha -- -R spec --compilers js:babel-core/register ./app/component/*.spec.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-    "angular-material": "~1.0.1",
-    "angular-animate": "~1.4.7",
-    "angular-aria": "~1.4.7",
+    "angular-material": "~1.0.2",
+    "angular-animate": "1.4.7",
+    "angular-aria": "1.4.7",
     "angular-material-icons": "~0.6.0",
     "angular-mocks": "~1.4.7",
     "angular-sanji-window": "Sanji-IO/angular-sanji-window#webpack-sanji-window",
     "autoprefixer-loader": "~3.1.0",
-    "babel": "~5.8.34",
     "babel-core": "~5.8.34",
     "babel-eslint": "~4.1.6",
     "babel-loader": "~5.3.3",
@@ -49,8 +49,8 @@
     "istanbul": "~0.4.2",
     "jquery": "~2.2.0",
     "mocha": "~2.3.4",
-    "ng-annotate-loader": "0.0.10",
-    "ng-cache-loader": "0.0.15",
+    "ng-annotate-loader": "~0.0.10",
+    "ng-cache-loader": "~0.0.15",
     "node-bourbon": "~4.2.3",
     "node-libs-browser": "~0.5.2",
     "node-sass": "~3.4.2",
@@ -75,15 +75,10 @@
   "keywords": [
     "sanji"
   ],
-  "author": {
-    "name": "Zack Yang",
-    "email": "zack9433@gmail.com",
-    "url": "https://github.com/Sanji-IO"
-  },
   "license": "MIT",
   "homepage": "https://github.com/Sanji-IO/sanji-socket-ui",
   "dependencies": {
-    "angular": "~1.4.7",
+    "angular": "1.4.7",
     "angular-socket-io": "~0.7.0",
     "socket.io-client": "~1.4.4"
   }
