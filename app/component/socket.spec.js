@@ -8,6 +8,7 @@ let SocketService;
 describe('Service: socket', function() {
   beforeEach(function setupEnvironment(done) {
     benv.setup(function () {
+      global.Node = window.Node;
       benv.expose({
         angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
         io: benv.require('../../node_modules/socket.io-client/socket.io.js')
