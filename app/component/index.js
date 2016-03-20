@@ -1,3 +1,4 @@
+import angualr from 'angular';
 import 'angular-socket-io';
 
 import SocketService from './socket.service';

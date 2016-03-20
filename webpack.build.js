@@ -1,8 +1,6 @@
 'use strict';
 
 var webpack = require('webpack');
-var WebpackNotifierPlugin = require('webpack-notifier');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
 
@@ -13,19 +11,33 @@ config.entry = {
 config.output.filename = 'sanji-socket-ui.js';
 config.output.library = 'sjSocket';
 config.externals = {
-  'sanji-socket-ui': 'sjSocket'
+  angular: {
+    root: 'angular',
+    commonjs2: 'angular',
+    commonjs: 'angular',
+    amd: 'angular'
+  },
+  'angular-socket-io': {
+    root: 'ngSocketIO',
+    commonjs2: 'angular-socket-io',
+    commonjs: 'angular-socket-io',
+    amd: 'angular-socket-io'
+  },
+  'socket.io-client': {
+    root: 'io',
+    commonjs2: 'socket.io-client',
+    commonjs: 'socket.io-client',
+    amd: 'socket.io-client'
+  }
 };
 
-config.module.loaders = [
-  {
-    test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer?browsers=last 2 versions!sass?includePaths[]=' + bourbon)
-  }
-].concat(config.module.loaders);
-
 config.plugins.push(
-  new ExtractTextPlugin('sanji-socket-ui.css'),
-  new WebpackNotifierPlugin({title: 'Webpack'}),
-  new webpack.optimize.DedupePlugin()
+  new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.AggressiveMergingPlugin(),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  })
 );
 module.exports = config;

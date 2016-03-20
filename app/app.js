@@ -1,9 +1,4 @@
-import 'angular-material.css';
-import './app.scss';
-
-import 'angular';
-import 'angular-material';
-import 'angular-sanji-window';
+import angular from 'angular';
 
 import component from './component';
 
