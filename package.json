@@ -2,7 +2,7 @@
   "name": "sanji-socket-ui",
   "author": "Zack Yang <zack9433@gmail.com> (https://github.com/zack9433)",
   "description": "sanji-exception-ui UI",
-  "main": "index",
+  "main": "dist/sanji-socket-ui.js",
   "config": {
     "ghooks": {
       "pre-commit": "npm run test:once && npm run check-coverage"
