@@ -8,6 +8,7 @@ config.entry = {
   'sanji-ui': './component/index.js'
 };
 config.output.filename = 'sanji-socket-ui.js';
+config.output.libraryTarget = 'umd';
 config.output.library = 'sjSocket';
 config.externals = {
   angular: {
