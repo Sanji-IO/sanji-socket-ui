@@ -1,7 +1,6 @@
 'use strict';
 
 var webpack = require('webpack');
-var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
 
 config.devtool = 'source-map';
