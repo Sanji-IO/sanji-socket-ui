@@ -3,7 +3,6 @@
 var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var bourbon = require('node-bourbon').includePaths;
 var config = require('./webpack.config.js');
 
 config.ip = 'localhost';
