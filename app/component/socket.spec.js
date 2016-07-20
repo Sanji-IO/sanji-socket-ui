@@ -17,12 +17,12 @@ describe('Service: socket', function() {
     });
   });
 
-  // beforeEach(function loadCalcModule() {
-  //   // force to load the module from scratch
-  //   delete require.cache[require.resolve('angular-socket-io'), require('./socket.service.js')];
-  //   require('angular-socket-io');
-  //   SocketService = require('./socket.service.js');
-  // });
+  beforeEach(function loadCalcModule() {
+    // force to load the module from scratch
+    delete require.cache[require.resolve('angular-socket-io'), require('./socket.service.js')];
+    require('angular-socket-io');
+    SocketService = require('./socket.service.js');
+  });
 
   beforeEach(function() {
     let injector = angular.injector(['ng', 'btford.socket-io']);
