@@ -8,3 +8,4 @@ npm-debug.log
 demo
 coverage/
 .nyc_output/
+.opt-in

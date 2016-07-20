@@ -11,18 +11,18 @@ describe('Service: socket', function() {
       global.Node = window.Node;
       benv.expose({
         angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
-        io: benv.require('../../node_modules/socket.io-client/socket.io.js')
+        io: benv.require('../../node_modules/socket.io-client/socket.io.js', 'io')
       });
       done();
     });
   });
 
-  beforeEach(function loadCalcModule() {
-    // force to load the module from scratch
-    delete require.cache[require.resolve('angular-socket-io'), require('./socket.service.js')];
-    require('angular-socket-io');
-    SocketService = require('./socket.service.js');
-  });
+  // beforeEach(function loadCalcModule() {
+  //   // force to load the module from scratch
+  //   delete require.cache[require.resolve('angular-socket-io'), require('./socket.service.js')];
+  //   require('angular-socket-io');
+  //   SocketService = require('./socket.service.js');
+  // });
 
   beforeEach(function() {
     let injector = angular.injector(['ng', 'btford.socket-io']);
