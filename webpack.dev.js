@@ -17,12 +17,15 @@ config.entry = {
   ]
 };
 
+config.module.postLoaders = [
+  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/}
+];
+
 config.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
   new WebpackNotifierPlugin({title: 'Webpack'}),
   new HtmlWebpackPlugin({
-    template: 'app/index.html',
-    inject: 'body',
+    template: 'index.html',
     hash: true
   })
 );

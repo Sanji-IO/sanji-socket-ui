@@ -1,10 +1,14 @@
 import angular from 'angular';
 
-import component from './component';
+import {sjSocket} from './component';
 
-let app = angular.module('webapp', [component]);
+const app = angular.module('webapp', [sjSocket]);
 app.run(($log, socket) => {
   socket.on('connect', () => {
     $log.info('connected');
   });
+});
+
+angular.element(document).ready(() => {
+  angular.bootstrap(document.body, ['webapp']);
 });
