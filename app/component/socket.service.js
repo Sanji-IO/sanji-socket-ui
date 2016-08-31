@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 const $inject = ['socketFactory'];
 class SocketService {
   constructor(socketFactory) {
-    let ioSocket = io.connect();
+    const ioSocket = io.connect({path: '/sanji'});
 
     this.socket = socketFactory({
       ioSocket: ioSocket
