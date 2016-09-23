@@ -1,7 +1,5 @@
-'use strict';
-
-var webpack = require('webpack');
-var config = require('./webpack.config.js');
+const webpack = require('webpack');
+const config = require('./webpack.config.js');
 
 config.devtool = 'source-map';
 config.entry = {
@@ -31,9 +29,9 @@ config.externals = {
   }
 };
 
-config.module.postLoaders = [
-  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/}
-];
+config.module.rules = [
+  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/, enforce: 'post'}
+].concat(config.module.rules);
 
 config.plugins.push(
   new webpack.optimize.DedupePlugin(),
