@@ -1,29 +1,25 @@
-'use strict';
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('./webpack.config.js');
 
-var webpack = require('webpack');
-var WebpackNotifierPlugin = require('webpack-notifier');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var config = require('./webpack.config.js');
-
-config.ip = 'localhost';
-config.port = 8080;
-config.debug = true;
 config.devtool = 'eval';
 config.entry = {
   'sanji-ui': [
     'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://' + config.ip + ':' + config.port,
+    'webpack-dev-server/client?http://localhost:8080',
     './app.js'
   ]
 };
 
-config.module.postLoaders = [
-  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/}
-];
+config.module.rules = [
+  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/, enforce: 'post'}
+].concat(config.module.rules);
 
 config.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
-  new WebpackNotifierPlugin({title: 'Webpack'}),
+  new webpack.LoaderOptionsPlugin({
+    debug: true
+  }),
   new HtmlWebpackPlugin({
     template: 'index.html',
     hash: true

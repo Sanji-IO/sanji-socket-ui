@@ -1,6 +1,4 @@
-'use strict';
-
-var config = require('./webpack.config');
+const config = require('./webpack.config');
 
 config.devtool = 'source-map';
 // Should be an empty object if it's generating a test build
