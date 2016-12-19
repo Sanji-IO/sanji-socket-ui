@@ -30,11 +30,10 @@ config.externals = {
 };
 
 config.module.rules = [
-  {test: /\.js$/, loader: 'ng-annotate', exclude: /(node_modules)/, enforce: 'post'}
+  {test: /\.js$/, use: 'ng-annotate-loader', exclude: /(node_modules)/, enforce: 'post'}
 ].concat(config.module.rules);
 
 config.plugins.push(
-  new webpack.optimize.DedupePlugin(),
   new webpack.LoaderOptionsPlugin({
     minimize: true,
     debug: false,
@@ -43,7 +42,8 @@ config.plugins.push(
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       screw_ie8: true,
-      warnings: false
+      warnings: false,
+      dead_code: true
     }
   })
 );
