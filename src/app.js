@@ -16,7 +16,8 @@ app.config(socketProvider => {
   });
 });
 app.run(($log, socket) => {
-  socket.on('connect', () => {
+  const ws = socket.connect();
+  ws.on('connect', () => {
     $log.info('connected');
   });
 });

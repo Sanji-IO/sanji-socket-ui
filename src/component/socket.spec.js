@@ -45,7 +45,7 @@ describe('Provider: socket', function() {
     let obj;
     sandbox.stub($injector, 'get').returns(socketFactory);
     obj = socketProvider.$get(socketFactory);
-    obj.on.should.be.exist;
-    obj.on.should.be.a('function');
+    obj.connect.should.be.exist;
+    obj.connect.should.be.a('function');
   });
 });
