@@ -15,10 +15,13 @@ app.config(sjioProvider => {
     }
   });
 });
-app.run(($log, sjio) => {
-  const ws = sjio.connect();
-  ws.on('connect', () => {
-    $log.info('connected');
+app.run(($log, sjio, socket) => {
+  sjio.connect();
+  socket.then(ws => {
+    console.log(ws);
+    ws.on('connect', () => {
+      $log.info('connected');
+    });
   });
 });
 
