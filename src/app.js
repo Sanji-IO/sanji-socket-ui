@@ -3,8 +3,8 @@ import angular from 'angular';
 import { sjSocket } from './component';
 
 const app = angular.module('webapp', [sjSocket]);
-app.config(socketProvider => {
-  socketProvider.configure({
+app.config(sjioProvider => {
+  sjioProvider.configure({
     transportOptions: {
       polling: {
         extraHeaders: {
@@ -15,8 +15,8 @@ app.config(socketProvider => {
     }
   });
 });
-app.run(($log, socket) => {
-  const ws = socket.connect();
+app.run(($log, sjio) => {
+  const ws = sjio.connect();
   ws.on('connect', () => {
     $log.info('connected');
   });
