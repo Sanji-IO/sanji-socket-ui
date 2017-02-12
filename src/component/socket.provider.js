@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const $inject = [];
+const $inject = ['$provide'];
 class SocketProvider {
   constructor(...injects) {
     SocketProvider.$inject.forEach((item, index) => this[item] = injects[index]);
@@ -17,16 +17,26 @@ class SocketProvider {
     this.configure = cfg => Object.assign(this.config, cfg);
   }
 
-  $get(socketFactory) {
+  $get($q, socketFactory) {
     'ngInject';
     const config = this.config;
+    const deferred = $q.defer();
+    let isConnected = false;
+    let socket;
+    this.$provide.value('socket', deferred.promise);
+
     return {
       connect
     };
 
     function connect(options = config) {
-      const ioSocket = io.connect(Object.assign({}, this.config, options));
-      return socketFactory({ ioSocket });
+      if (!isConnected) {
+        const ioSocket = io.connect(Object.assign({}, this.config, options));
+        socket = socketFactory({ ioSocket });
+        deferred.resolve(socket);
+        isConnected = true;
+      }
+      return socket;
     }
   }
 }

@@ -7,21 +7,21 @@ import SocketProvider from './socket.provider';
 describe('Provider: socket', function() {
   let sandbox;
   let socketProvider;
-  let $injector;
+  let $q;
   let socketFactory;
 
   beforeEach(angular.mock.module(sjSocket));
 
   beforeEach(
-    angular.mock.inject((_$injector_, _socketFactory_) => {
+    angular.mock.inject((_$q_, _socketFactory_) => {
       sandbox = sinon.sandbox.create();
-      $injector = _$injector_;
+      $q = _$q_;
       socketFactory = _socketFactory_;
     })
   );
 
   beforeEach(() => {
-    socketProvider = new SocketProvider();
+    socketProvider = new SocketProvider({ value: function() {} });
   });
 
   afterEach(() => sandbox.restore());
@@ -43,8 +43,9 @@ describe('Provider: socket', function() {
 
   it('#$get(<...injects>) should return socket service instance.', () => {
     let obj;
-    sandbox.stub($injector, 'get').returns(socketFactory);
-    obj = socketProvider.$get(socketFactory);
+    const spy = sandbox.spy(socketProvider.$provide, 'value');
+    obj = socketProvider.$get($q, socketFactory);
+    spy.should.be.called.once;
     obj.connect.should.be.exist;
     obj.connect.should.be.a('function');
   });
