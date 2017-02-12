@@ -20,9 +20,14 @@ class SocketProvider {
   $get(socketFactory) {
     'ngInject';
     const config = this.config;
-    const ioSocket = io.connect(config);
+    return {
+      connect
+    };
 
-    return socketFactory({ ioSocket });
+    function connect(options = config) {
+      const ioSocket = io.connect(Object.assign({}, this.config, options));
+      return socketFactory({ ioSocket });
+    }
   }
 }
 
