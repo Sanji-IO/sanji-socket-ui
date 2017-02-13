@@ -16,9 +16,10 @@ app.config(sjioProvider => {
   });
 });
 app.run(($log, sjio, $rootScope) => {
-  const ws = sjio.connect();
-  console.log(ws);
-  $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, ws);
+  sjio.connect();
+  $rootScope.$on(SOCKET_INIT_CONNECT_EVENT, () => {
+    console.log('test');
+  });
 });
 
 angular.element(document).ready(() => {
