@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import { sjSocket, SOCKET_INIT_CONNECT_EVENT } from './component';
+import { sjSocket } from './component';
 
 const app = angular.module('webapp', [sjSocket]);
 app.config(sjioProvider => {
@@ -15,12 +15,8 @@ app.config(sjioProvider => {
     }
   });
 });
-app.run(($log, sjio, $rootScope) => {
-  const ws = sjio.connect();
-  $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, ws);
-  ws.on('connect', () => {
-    $log.info('connected');
-  });
+app.run(($log, sjio) => {
+  sjio.connect();
 });
 
 angular.element(document).ready(() => {

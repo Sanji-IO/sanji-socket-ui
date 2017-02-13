@@ -7,15 +7,13 @@ import { SocketProvider } from './socket.provider';
 describe('Provider: socket', function() {
   let sandbox;
   let socketProvider;
-  let $q;
   let socketFactory;
 
   beforeEach(angular.mock.module(sjSocket));
 
   beforeEach(
-    angular.mock.inject((_$q_, _socketFactory_) => {
+    angular.mock.inject(_socketFactory_ => {
       sandbox = sinon.sandbox.create();
-      $q = _$q_;
       socketFactory = _socketFactory_;
     })
   );
