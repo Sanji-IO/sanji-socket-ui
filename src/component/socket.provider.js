@@ -18,10 +18,9 @@ export class SocketProvider {
     this.configure = cfg => Object.assign(this.config, cfg);
   }
 
-  $get(socketFactory) {
+  $get($rootScope, socketFactory) {
     'ngInject';
     const config = this.config;
-    let socket;
     let isConnected = false;
 
     return {
@@ -31,10 +30,9 @@ export class SocketProvider {
     function connect(options = config) {
       if (!isConnected) {
         const ioSocket = io.connect(Object.assign({}, this.config, options));
-        socket = socketFactory({ ioSocket });
         isConnected = true;
+        $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, socketFactory({ ioSocket }));
       }
-      return socket;
     }
   }
 }
