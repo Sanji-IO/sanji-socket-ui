@@ -48,6 +48,7 @@ export class SocketProvider {
 
     function disconnect() {
       isConnected = false;
+      ioSocket.disconnect();
     }
   }
 }
