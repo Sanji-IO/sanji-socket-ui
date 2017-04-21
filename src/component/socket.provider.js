@@ -21,20 +21,33 @@ export class SocketProvider {
   $get($rootScope, $timeout, socketFactory) {
     'ngInject';
     const config = this.config;
+    let socket;
     let isConnected = false;
 
     return {
-      connect
+      connect,
+      disconnect
     };
 
     function connect(options = config) {
       if (!isConnected) {
-        const ioSocket = io.connect(Object.assign({}, this.config, options));
+        if (socket) {
+          socket.removeAllListeners('connect');
+          socket.removeAllListeners('disconnect');
+        }
+        socket = io.connect(options);
         isConnected = true;
         $timeout(() => {
-          $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, socketFactory({ ioSocket }));
+          $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, socketFactory({ socket }));
+        });
+        socket.on('disconnect', () => {
+          isConnected = false;
         });
       }
+    }
+
+    function disconnect() {
+      isConnected = false;
     }
   }
 }
