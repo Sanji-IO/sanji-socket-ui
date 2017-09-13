@@ -23,11 +23,17 @@ export class SocketProvider {
     const config = this.config;
     let ioSocket;
     let isConnected = false;
+    let mySocket = null;
 
     return {
+      getSocket,
       connect,
       disconnect
     };
+
+    function getSocket() {
+      return mySocket;
+    }
 
     function connect(options = config) {
       if (!isConnected) {
@@ -38,16 +44,19 @@ export class SocketProvider {
         ioSocket = io.connect(options);
         isConnected = true;
         $timeout(() => {
-          $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, socketFactory({ ioSocket }));
+          mySocket = socketFactory({ ioSocket });
+          $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, mySocket);
         });
         ioSocket.on('disconnect', () => {
           isConnected = false;
+          mySocket = null;
         });
       }
     }
 
     function disconnect() {
       isConnected = false;
+      mySocket = null;
       ioSocket.disconnect();
     }
   }
