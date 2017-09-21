@@ -43,8 +43,8 @@ export class SocketProvider {
         }
         ioSocket = io.connect(options);
         isConnected = true;
+        mySocket = socketFactory({ ioSocket });
         $timeout(() => {
-          mySocket = socketFactory({ ioSocket });
           $rootScope.$broadcast(SOCKET_INIT_CONNECT_EVENT, mySocket);
         });
         ioSocket.on('disconnect', () => {
