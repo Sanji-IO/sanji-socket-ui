@@ -21,8 +21,8 @@
     "check-coverage": "istanbul check-coverage --statements 40 --branches 0 --functions 25 --lines 40",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "start": "cross-env NODE_ENV=development node server/dev-server.js",
-    "publish-latest": "publish-latest",
-    "semantic-release": "semantic-release pre && npm publish && npm run publish-latest && semantic-release post"
+    "publish": "publish-latest",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0",
@@ -58,7 +58,7 @@
     "progress-bar-webpack-plugin": "^1.9.0",
     "publish-latest": "~1.1.2",
     "rimraf": "^2.5.4",
-    "semantic-release": "^6.3.2",
+    "semantic-release": "^8.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.3.0"
   },
@@ -79,5 +79,5 @@
     "angular-socket-io": "~0.7.0",
     "socket.io-client": "github:socketio/socket.io-client"
   },
-  "version": "3.0.6"
+  "version": "3.1.0"
 }

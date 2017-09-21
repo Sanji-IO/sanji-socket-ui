@@ -18,7 +18,7 @@ app.config(sjioProvider => {
 app.run(($log, sjio, $rootScope) => {
   sjio.connect();
   $rootScope.$on(SOCKET_INIT_CONNECT_EVENT, () => {
-    console.log('test');
+    console.log('test', sjio.getSocket());
   });
 });
 
