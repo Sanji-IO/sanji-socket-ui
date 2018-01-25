@@ -4,7 +4,7 @@ export const SOCKET_INIT_CONNECT_EVENT = 'sj:ws-init-connect';
 const $inject = [];
 export class SocketProvider {
   constructor(...injects) {
-    SocketProvider.$inject.forEach((item, index) => this[item] = injects[index]);
+    SocketProvider.$inject.forEach((item, index) => (this[item] = injects[index]));
 
     this.config = {
       path: '/sanji',

@@ -4,7 +4,7 @@ import 'angular-mocks';
 import { sjSocket } from './index';
 import { SocketProvider } from './socket.provider';
 
-describe('Provider: socket', function() {
+describe('Provider: socket', () => {
   let sandbox;
   let socketProvider;
   let socketFactory;
@@ -41,7 +41,8 @@ describe('Provider: socket', function() {
 
   it('#$get(<...injects>) should return socket service instance.', () => {
     let obj;
-    obj = socketProvider.$get(socketFactory);
+    const length = socketProvider.$get.length;
+    obj = socketProvider.$get[length - 1].call(socketProvider, socketFactory);
     obj.connect.should.be.exist;
     obj.connect.should.be.a('function');
   });

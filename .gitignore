@@ -9,3 +9,4 @@ demo
 coverage/
 .nyc_output/
 .opt-in
+dist/
